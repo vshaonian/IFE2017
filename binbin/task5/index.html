@@ -7,13 +7,19 @@
 		#RightIn{
 			margin-right: 40px;
 		}
+		#wrap{
+			position: relative;
+			height: 600px;
+		}
 		#wrap div{
-			float: left;
+			position: absolute;
+			bottom: 0;
+			width: 20px;
 			margin: 2px;
 			padding: 5px;
 			background: red;
 			color: #fff;
-			vertical-align: bottom;
+			vertical-align: 1%;
 		}
 		#sort{
 			clear: both;
@@ -102,10 +108,12 @@
 		function printf() {
 			wrap.innerHTML = "";
 			for(var i = 0; i < arr.length; i++) {
-				var div = document.createElement("div");
+			var div = document.createElement("div");
+				div.setAttribute("class","count");
 				div.innerHTML = arr[i];
 				wrap.appendChild(div);
 				div.style.height = (5 * arr[i]) + "px";
+				div.style.left = (i*35) + "px";
 			}
 		}
 
@@ -114,21 +122,123 @@
 			if(arr.length === 0) {
 				alert("还没有输入数字哦！")
 			} else{
-				var k, j, temp, stop = arr.length;
-				for(k = 0; k < arr.length; k++) {
-					stop--;
-					for(j = 0; j < stop; j++) {
-						if(arr[j] > arr[j+1]) {
-							temp = arr[j];
-							arr[j] = arr[j+1];
-							arr[j+1] = temp;
-						}
-					}
-				}
-				console.log(arr);
+				// var k, j, temp, stop = arr.length;
+				// for(k = 0; k < arr.length; k++) {
+				// 	stop--;
+				// 	for(j = 0; j < stop; j++) {
+				// 		if(arr[j] > arr[j+1]) {
+				// 			temp = arr[j];
+				// 			arr[j] = arr[j+1];
+				// 			arr[j+1] = temp;
+				// 		}
+				// 	}
+				// }
+				// console.log(arr);
 				// return arr;
+
+
+				var bars = [].slice.call(document.getElementsByClassName("count"));
+  				//var arr = [8, 10, 3, 5, 6, 9, 2, 4, 7, 1];
+				var state = [];
+
+				// var draw = function(){
+				// 	var bar, s;
+				// 	s = state.shift() || [];
+				// 	for(bar in bars){
+				// 	  bars[bar].style.height = 50 * s[bar];
+				// 	  bars[bar].style.left = 50 * bar;
+				// 	}
+				// }
+
+				var sort = function(arr){
+				  for(var k = 0; k < arr.length; k++){
+				    for(var j = 0; j < arr.length - k - 1; j++){
+				      if(arr[j] > arr[j+1]){
+				        // arr[j]   = arr[j] + arr[j+1];
+				        // arr[j+1] = arr[j] - arr[j+1];
+				        // arr[j]   = arr[j] - arr[j+1];
+				        var temp = arr[j];
+				        arr[j] = arr[j+1];
+				        arr[j+1] = temp;
+				        state.push(JSON.parse(JSON.stringify(arr)));
+				        //state.push(arr);
+				      }
+				    }
+				  }
+				}
+
+				sort(arr);
+				//console.log(typeof state[0][0]);
+				//console.log(bars);
+				var draw = function () {
+					var bar, s;
+					s = state.shift() || [];
+					console.log(state);
+					// for(bar in bars){
+					// 	bars[bar].style.height = 50 * s[bar];
+					// 	bars[bar].style.left = 50 * bar;
+					// }
+					// if(state === []) {
+					// 	//alert("排序完成！");
+					// 	return true;
+					// } else {
+						
+							var q = 0;
+							for(bar in bars) {
+								if(s[bar]!==undefined) {
+									console.log(s[bar]);
+									console.log(bars[bar]);
+									bars[bar].style.height = (5*parseInt(s[bar])) + "px";
+									bars[bar].style.left = (q * 35) + "px";
+									bars[bar].innerHTML = s[bar];
+									q++;
+								}
+							}
+						
+					//}
+					//console.log(s);
+				}
+				//draw();
+				setInterval(draw, 200);
 			}
 		}
+
+
+
+// !function(d){
+
+//   var bars = [].slice.call(d.getElementsByTagName('button'));
+//   //var arr = [8, 10, 3, 5, 6, 9, 2, 4, 7, 1];
+//   var state = [];
+
+//   var draw = function(){
+//     var bar, s;
+//     s = state.shift() || [];
+//     for(bar in bars){
+//       bars[bar].style.height = 50 * s[bar];
+//       bars[bar].style.left = 50 * bar;
+//     }
+//   }
+
+//   var sort = function(arr){
+//     for(var i = 0; i < arr.length; i++){
+//       for(var j = 0; j < arr.length - i - 1; j++){
+//         if(arr[j] > arr[j+1]){
+//           arr[j]   = arr[j] + arr[j+1];
+//           arr[j+1] = arr[j] - arr[j+1];
+//           arr[j]   = arr[j] - arr[j+1];
+//           state.push(JSON.parse(JSON.stringify(arr)));
+//         }
+//       }
+//     }
+//   }
+
+//   sort(arr);
+//   setInterval(draw, 500);
+
+// }(document)
+
+
 	</script>
 </body>
 </html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task5</title>
+	<style type="text/css">
+		#RightIn{
+			margin-right: 40px;
+		}
+		#wrap div{
+			float: left;
+			margin: 2px;
+			padding: 5px;
+			background: red;
+			color: #fff;
+			vertical-align: bottom;
+		}
+		#sort{
+			clear: both;
+			margin-top: 50px;
+			width: 80px;
+			padding: 1px 6px;
+			text-align: center;
+			border: 2px solid #000;
+			border-color: buttonface;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" name="" id="ipt">
+	<button id="LeftIn">左侧入</button>
+	<button id="RightIn">右侧入</button>
+	<button id="LeftOut">左侧出</button>
+	<button id="RightOut">右侧出</button>
+	<div id="wrap"></div>
+	<div id="sort">点击排序</div>
+	<script type="text/javascript">
+		var wrap = document.getElementById("wrap");
+		var btns = document.getElementsByTagName("button");
+		var arr = [];
+
+		//输入前清空上次内容
+		var ipt = document.getElementById("ipt");
+
+			ipt.onclick = function () {
+				ipt.value = "";
+			}
+
+		//左侧入
+		btns[0].onclick = function () {
+			var text = document.getElementById("ipt").value;
+
+
+			if (parseInt(text) >= 10 && parseInt(text) <= 100) {
+				if(arr.length < 60) {
+					arr.unshift(text);
+					printf();
+				} else {
+					alert("最多60个数字哦！")
+				}    			
+    		} else {
+      			alert("请输入10-100之间的数字");
+    		}
+		}
+
+		//右侧入
+		btns[1].onclick = function () {
+			var text = document.getElementById("ipt").value;
+			
+			if (parseInt(text) >= 10 && parseInt(text) <= 100) {
+				if(arr.length < 60) {
+					arr.push(text);
+					printf();
+				} else {
+					alert("最多60个数字哦！")
+				}
+    		} else {
+      			alert("请输入10-100之间的数字");
+    		}
+		}
+
+		//左侧出
+		btns[2].onclick = function () {
+			if(arr.length === 0) {
+				alert("没啦")
+			}
+			arr.shift();
+			printf();
+		}
+
+		//右侧出
+		btns[3].onclick = function () {
+			if(arr.length === 0) {
+				alert("没有东西啦！")
+			}
+			arr.pop();
+			printf();
+		}
+
+		//输出HTML
+		function printf() {
+			wrap.innerHTML = "";
+			for(var i = 0; i < arr.length; i++) {
+				var div = document.createElement("div");
+				div.innerHTML = arr[i];
+				wrap.appendChild(div);
+				div.style.height = (5 * arr[i]) + "px";
+			}
+		}
+
+		var sort = document.getElementById("sort");
+		sort.onclick = function () {
+			if(arr.length === 0) {
+				alert("还没有输入数字哦！")
+			} else{
+				var k, j, temp, stop = arr.length;
+				for(k = 0; k < arr.length; k++) {
+					stop--;
+					for(j = 0; j < stop; j++) {
+						if(arr[j] > arr[j+1]) {
+							temp = arr[j];
+							arr[j] = arr[j+1];
+							arr[j+1] = temp;
+						}
+					}
+				}
+				console.log(arr);
+				// return arr;
+			}
+		}
+	</script>
+</body>
+</html>

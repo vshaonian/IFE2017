@@ -1,244 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>task5</title>
-	<style type="text/css">
-		#RightIn{
-			margin-right: 40px;
-		}
-		#wrap{
-			position: relative;
-			height: 600px;
-		}
-		#wrap div{
-			position: absolute;
-			bottom: 0;
-			width: 20px;
-			margin: 2px;
-			padding: 5px;
-			background: red;
-			color: #fff;
-			vertical-align: 1%;
-		}
-		#sort{
-			clear: both;
-			margin-top: 50px;
-			width: 80px;
-			padding: 1px 6px;
-			text-align: center;
-			border: 2px solid #000;
-			border-color: buttonface;
-			cursor: pointer;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>task5</title>
+    <style type="text/css">
+        #RightIn {
+            margin-right: 40px;
+        }
+
+        #wrap {
+            position: relative;
+            height: 600px;
+        }
+
+        #wrap div {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            margin: 2px;
+            padding: 5px;
+            background: red;
+            color: #fff;
+            vertical-align: 1%;
+        }
+
+        #sort {
+            clear: both;
+            margin-top: 50px;
+            width: 80px;
+            padding: 1px 6px;
+            text-align: center;
+            border: 2px solid #000;
+            border-color: buttonface;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-	<input type="text" name="" id="ipt">
-	<button id="LeftIn">左侧入</button>
-	<button id="RightIn">右侧入</button>
-	<button id="LeftOut">左侧出</button>
-	<button id="RightOut">右侧出</button>
-	<div id="wrap"></div>
-	<div id="sort">点击排序</div>
-	<script type="text/javascript">
-		var wrap = document.getElementById("wrap");
-		var btns = document.getElementsByTagName("button");
-		var arr = [];
+<input type="text" name="" id="ipt">
+<button id="LeftIn">左侧入</button>
+<button id="RightIn">右侧入</button>
+<button id="LeftOut">左侧出</button>
+<button id="RightOut">右侧出</button>
+<div id="wrap"></div>
+<div id="sort">点击排序</div>
+<script type="text/javascript">
+    var wrap = document.getElementById("wrap");
+    var btns = document.getElementsByTagName("button");
+    var arr = [];
 
-		//输入前清空上次内容
-		var ipt = document.getElementById("ipt");
+    //输入前清空上次内容
+    var ipt = document.getElementById("ipt");
 
-			ipt.onclick = function () {
-				ipt.value = "";
-			}
+    ipt.onclick = function () {
+        ipt.value = "";
+    }
 
-		//左侧入
-		btns[0].onclick = function () {
-			var text = document.getElementById("ipt").value;
-
-
-			if (parseInt(text) >= 10 && parseInt(text) <= 100) {
-				if(arr.length < 60) {
-					arr.unshift(text);
-					printf();
-				} else {
-					alert("最多60个数字哦！")
-				}    			
-    		} else {
-      			alert("请输入10-100之间的数字");
-    		}
-		}
-
-		//右侧入
-		btns[1].onclick = function () {
-			var text = document.getElementById("ipt").value;
-			
-			if (parseInt(text) >= 10 && parseInt(text) <= 100) {
-				if(arr.length < 60) {
-					arr.push(text);
-					printf();
-				} else {
-					alert("最多60个数字哦！")
-				}
-    		} else {
-      			alert("请输入10-100之间的数字");
-    		}
-		}
-
-		//左侧出
-		btns[2].onclick = function () {
-			if(arr.length === 0) {
-				alert("没啦")
-			}
-			arr.shift();
-			printf();
-		}
-
-		//右侧出
-		btns[3].onclick = function () {
-			if(arr.length === 0) {
-				alert("没有东西啦！")
-			}
-			arr.pop();
-			printf();
-		}
-
-		//输出HTML
-		function printf() {
-			wrap.innerHTML = "";
-			for(var i = 0; i < arr.length; i++) {
-			var div = document.createElement("div");
-				div.setAttribute("class","count");
-				div.innerHTML = arr[i];
-				wrap.appendChild(div);
-				div.style.height = (5 * arr[i]) + "px";
-				div.style.left = (i*35) + "px";
-			}
-		}
-
-		var sort = document.getElementById("sort");
-		sort.onclick = function () {
-			if(arr.length === 0) {
-				alert("还没有输入数字哦！")
-			} else{
-				// var k, j, temp, stop = arr.length;
-				// for(k = 0; k < arr.length; k++) {
-				// 	stop--;
-				// 	for(j = 0; j < stop; j++) {
-				// 		if(arr[j] > arr[j+1]) {
-				// 			temp = arr[j];
-				// 			arr[j] = arr[j+1];
-				// 			arr[j+1] = temp;
-				// 		}
-				// 	}
-				// }
-				// console.log(arr);
-				// return arr;
+    //左侧入
+    btns[0].onclick = function () {
+        var text = document.getElementById("ipt").value;
 
 
-				var bars = [].slice.call(document.getElementsByClassName("count"));
-  				//var arr = [8, 10, 3, 5, 6, 9, 2, 4, 7, 1];
-				var state = [];
+        if (parseInt(text) >= 10 && parseInt(text) <= 100) {
+            if (arr.length < 60) {
+                arr.unshift(text);
+                printf();
+            } else {
+                alert("最多60个数字哦！")
+            }
+        } else {
+            alert("请输入10-100之间的数字");
+        }
+    }
 
-				// var draw = function(){
-				// 	var bar, s;
-				// 	s = state.shift() || [];
-				// 	for(bar in bars){
-				// 	  bars[bar].style.height = 50 * s[bar];
-				// 	  bars[bar].style.left = 50 * bar;
-				// 	}
-				// }
+    //右侧入
+    btns[1].onclick = function () {
+        var text = document.getElementById("ipt").value;
 
-				var sort = function(arr){
-				  for(var k = 0; k < arr.length; k++){
-				    for(var j = 0; j < arr.length - k - 1; j++){
-				      if(arr[j] > arr[j+1]){
-				        // arr[j]   = arr[j] + arr[j+1];
-				        // arr[j+1] = arr[j] - arr[j+1];
-				        // arr[j]   = arr[j] - arr[j+1];
-				        var temp = arr[j];
-				        arr[j] = arr[j+1];
-				        arr[j+1] = temp;
-				        state.push(JSON.parse(JSON.stringify(arr)));
-				        //state.push(arr);
-				      }
-				    }
-				  }
-				}
+        if (parseInt(text) >= 10 && parseInt(text) <= 100) {
+            if (arr.length < 60) {
+                arr.push(text);
+                printf();
+            } else {
+                alert("最多60个数字哦！")
+            }
+        } else {
+            alert("请输入10-100之间的数字");
+        }
+    }
 
-				sort(arr);
-				//console.log(typeof state[0][0]);
-				//console.log(bars);
-				var draw = function () {
-					var bar, s;
-					s = state.shift() || [];
-					console.log(state);
-					// for(bar in bars){
-					// 	bars[bar].style.height = 50 * s[bar];
-					// 	bars[bar].style.left = 50 * bar;
-					// }
-					// if(state === []) {
-					// 	//alert("排序完成！");
-					// 	return true;
-					// } else {
-						
-							var q = 0;
-							for(bar in bars) {
-								if(s[bar]!==undefined) {
-									console.log(s[bar]);
-									console.log(bars[bar]);
-									bars[bar].style.height = (5*parseInt(s[bar])) + "px";
-									bars[bar].style.left = (q * 35) + "px";
-									bars[bar].innerHTML = s[bar];
-									q++;
-								}
-							}
-						
-					//}
-					//console.log(s);
-				}
-				//draw();
-				setInterval(draw, 200);
-			}
-		}
+    //左侧出
+    btns[2].onclick = function () {
+        if (arr.length === 0) {
+            alert("没啦")
+        }
+        arr.shift();
+        printf();
+    }
 
+    //右侧出
+    btns[3].onclick = function () {
+        if (arr.length === 0) {
+            alert("没有东西啦！")
+        }
+        arr.pop();
+        printf();
+    }
 
+    //输出HTML
+    function printf() {
+        wrap.innerHTML = "";
+        for (var i = 0; i < arr.length; i++) {
+            var div = document.createElement("div");
+            div.setAttribute("class", "count");
+            div.innerHTML = arr[i];
+            wrap.appendChild(div);
+            div.style.height = (5 * arr[i]) + "px";
+            div.style.left = (i * 35) + "px";
+        }
+    }
 
-// !function(d){
+    var sort = document.getElementById("sort");
+    sort.onclick = function () {
+        if (arr.length === 0) {
+            alert("还没有输入数字哦！")
+        } else {
+            var bars = [].slice.call(document.getElementsByClassName("count"));
+            var state = [];
+            var sort = function (arr) {
+                for (var k = 0; k < arr.length; k++) {
+                    for (var j = 0; j < arr.length - k - 1; j++) {
+                        if (arr[j] > arr[j + 1]) {
+                            var temp = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = temp;
+                            state.push(JSON.parse(JSON.stringify(arr)));
+                        }
+                    }
+                }
+            }
 
-//   var bars = [].slice.call(d.getElementsByTagName('button'));
-//   //var arr = [8, 10, 3, 5, 6, 9, 2, 4, 7, 1];
-//   var state = [];
-
-//   var draw = function(){
-//     var bar, s;
-//     s = state.shift() || [];
-//     for(bar in bars){
-//       bars[bar].style.height = 50 * s[bar];
-//       bars[bar].style.left = 50 * bar;
-//     }
-//   }
-
-//   var sort = function(arr){
-//     for(var i = 0; i < arr.length; i++){
-//       for(var j = 0; j < arr.length - i - 1; j++){
-//         if(arr[j] > arr[j+1]){
-//           arr[j]   = arr[j] + arr[j+1];
-//           arr[j+1] = arr[j] - arr[j+1];
-//           arr[j]   = arr[j] - arr[j+1];
-//           state.push(JSON.parse(JSON.stringify(arr)));
-//         }
-//       }
-//     }
-//   }
-
-//   sort(arr);
-//   setInterval(draw, 500);
-
-// }(document)
-
-
-	</script>
+            sort(arr);
+            var draw = function () {
+                var bar, s;
+                s = state.shift() || [];
+                var q = 0;
+                for (bar in bars) {
+                    if (s[bar] !== undefined) {
+                        console.log(s[bar]);
+                        console.log(bars[bar]);
+                        bars[bar].style.height = (5 * parseInt(s[bar])) + "px";
+                        bars[bar].style.left = (q * 35) + "px";
+                        bars[bar].innerHTML = s[bar];
+                        q++;
+                    }
+                }
+            }
+            setInterval(draw, 200);
+        }
+    }
+</script>
 </body>
 </html>

@@ -1,109 +1,137 @@
-img{
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			margin: auto;
-		}
-		@keyframes streamer{
-				0%{
-					background-position: 0 0;
-				}
-				100%{
-					background-position: -100% 0;
-				}
-			}
-		div{
-			width: 600px;
-			height: 337px;
-			text-align: center;
-			font-size: 40px;
-			color: transparent;
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			margin: auto;
-			background-image: -webkit-linear-gradient(left,#3498db,#f47920 10%,#d71345 20%,#f7acbc 30%,#ffd400 40%,#3498db 50%,#f47920 60%,#d71345 70%,#f7acbc 80%,#ffd400 90%,#3498db);
-			-webkit-background-clip: text;
-			background-size: 200% 100%;
-			
-		}
-		div:hover{
-			animation: 5s streamer infinite linear;
-		}
-		div:hover p{
-			line-height: 300px;
-			opacity: 1;
-			transition: 1s line-height, 0s opacity;
-		}
-		div:hover p:before{
-			width: 510px;
-			transition: 1s width;
-		}
-		div:hover p:after{
-			width: 510px;
-			transition: 1s width;
-		}
-		div:hover div:before{
-			width: 5px;
-			height: 300px;
-			transition: 1s width, 1s height;
-		}
-		div:hover div:after{
-			background-color: red;
-		}
-		p{
-			opacity: 0;
-			width: 550px;
-			height: 300px;
-			margin: 19px auto 0 auto;
-			line-height: 350px;
-			/*background-color: red;*/
-		}
-		div:before{
-			content: "";
-			position: absolute;
-			left: 45px;
-			top: 0;
-			bottom: 0;
-			margin: auto;
-			height: 0px;
-			width: 5px;
-			background-color: #fff;
-		}
-		div:after{
-			content: "";
-			position: absolute;
-			right: 45px;
-			top: 0;
-			bottom: 0;
-			margin: auto;
-			height: 0px;
-			width: 5px;
-			background-color: #fff;
-		}
-		p:before{
-			content: "";
-			width: 0px;
-			height: 5px;
-			position: absolute;
-			top:10px;
-			left:0;
-			right:0;
-			margin: auto;		
-			background-color: #fff;
-		}
-		p:after{
-			content: "";
-			width: 0px;
-			height: 5px;
-			position: absolute;
-			bottom:10px;
-			left:0;
-			right:0;
-			margin: auto;	
-			background-color: #fff;
-		}
+.wrap{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 337px;
+	width: 600px;
+	margin: auto;
+}
+.img{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	filter: 0px;
+	transition: 1s filter;
+}
+@keyframes streamer{
+	0%{
+		background-position: 0 0;
+	}
+	100%{
+		background-position: -100% 0;
+	}
+}
+.div{
+	width: 600px;
+	height: 337px;
+	text-align: center;
+	font-size: 40px;
+	;color: transparent;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background-image: -webkit-linear-gradient(left,#3498db,#f47920 10%,#d71345 20%,#f7acbc 30%,#ffd400 40%,#3498db 50%,#f47920 60%,#d71345 70%,#f7acbc 80%,#ffd400 90%,#3498db);
+	-webkit-background-clip: text;
+	background-size: 200% 100%;
+}
+.div:hover{
+	animation: 5s streamer infinite linear;
+}
+.div:hover .p{
+	line-height: 300px;
+	opacity: 1;
+}
+.p{
+	opacity: 0;
+	width: 550px;
+	height: 300px;
+	margin: 19px auto 0 auto;
+	line-height: 350px;
+	transition: 0s opacity,1s line-height;
+}
+.div:before{
+	content: "";
+	height: 0px;
+	width: 5px;
+	position: absolute;
+	left: 45px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: #fff;
+	transition: 1s height;
+}
+.div:after{
+	content: "";
+	position: absolute;
+	right: 45px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: 0px;
+	width: 5px;
+	background-color: #fff;
+	transition: 1s height;
+}
+.p:before{
+	content: "";
+	width: 0px;
+	height: 5px;
+	position: absolute;
+	top:10px;
+	left:0;
+	right:0;
+	margin: auto;		
+	background-color: #fff;
+	transition: 1s width;
+}
+.p:after{
+	content: "";
+	width: 0px;
+	height: 5px;
+	position: absolute;
+	bottom:10px;
+	left:0;
+	right:0;
+	margin: auto;	
+	background-color: #fff;
+	transition: 1s width;
+}
+.wrap:hover .div:before{
+		height: 310px;
+}
+.wrap:hover .div:after{
+		height: 310px;
+}
+.div:hover .p:before{
+	width: 510px;
+}
+.div:hover .p:after{
+	width: 510px;
+}
+/*@keyframes fillter{
+	0%{
+		-webkit-filter: blur(0px);
+	    -moz-filter: blur(0px);
+	    -ms-filter: blur(0px);    
+	    filter: blur(0px);
+	}
+	100%{
+		-webkit-filter: blur(5px);
+	    -moz-filter: blur(5px);
+	    -ms-filter: blur(5px);    
+	    filter: blur(5px);
+	}
+}*/
+.wrap:hover .img{
+	filter: blur(5px);
+	/*animation: 1s fillter forwards;*/
+}

@@ -55,7 +55,7 @@
 	height: 300px;
 	margin: 19px auto 0 auto;
 	line-height: 350px;
-	transition: 0s opacity,1s line-height;
+	transition: 0s line-height, 1s opacity;
 }
 .div:before{
 	content: "";
@@ -71,13 +71,13 @@
 }
 .div:after{
 	content: "";
+	height: 0px;
+	width: 5px;
 	position: absolute;
 	right: 45px;
 	top: 0;
 	bottom: 0;
-	margin: auto;
-	height: 0px;
-	width: 5px;
+	margin: auto;	
 	background-color: #fff;
 	transition: 1s height;
 }
@@ -105,11 +105,13 @@
 	background-color: #fff;
 	transition: 1s width;
 }
+
+
 .wrap:hover .div:before{
-		height: 310px;
+	height: 310px;
 }
 .wrap:hover .div:after{
-		height: 310px;
+	height: 310px;
 }
 .div:hover .p:before{
 	width: 510px;
@@ -117,21 +119,6 @@
 .div:hover .p:after{
 	width: 510px;
 }
-/*@keyframes fillter{
-	0%{
-		-webkit-filter: blur(0px);
-	    -moz-filter: blur(0px);
-	    -ms-filter: blur(0px);    
-	    filter: blur(0px);
-	}
-	100%{
-		-webkit-filter: blur(5px);
-	    -moz-filter: blur(5px);
-	    -ms-filter: blur(5px);    
-	    filter: blur(5px);
-	}
-}*/
 .wrap:hover .img{
 	filter: blur(5px);
-	/*animation: 1s fillter forwards;*/
 }

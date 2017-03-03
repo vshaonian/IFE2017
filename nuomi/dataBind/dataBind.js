@@ -1,13 +1,24 @@
-function Observer(obj) {
-	this.data = obj;
+function Observer(data) {
+	this.data = data;
+	this.walk(data);
 }
-var nnn = new Observer({
-	name: 'sxy',
-	age: '21'
-})
-var p = Observer.prototype;
-p.convert = function(key,val) {
-	Object.defineProPerty(this.data,key,{
+
+//原型方法
+
+Observer.prototype.walk = function(obj) {
+	var val;
+	for(var key in obj) {
+		if(obj.hasOwnProperty(key)) {
+			val = obj[key];
+			if(typeof val === "object") {
+				new Observer(val);
+			}
+			this.convert(key,val);
+		}
+	}
+}
+Observer.prototype.convert = function(key,val) {
+	Object.defineProperty(this.data,key,{
 		enumerable: true,
 		configurable: true,
 		get: function() {
@@ -23,5 +34,10 @@ p.convert = function(key,val) {
 				val = newVal;
 			}
 		}
-	})
+	});
 }
+
+var nnn = new Observer({
+	name: "sxy",
+	age: "21"
+})

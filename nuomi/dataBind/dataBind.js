@@ -1,7 +1,9 @@
+//创建事件
 function Event() {
 	this.events = {};
 }
 
+//添加原型属性，监听
 Event.prototype.on = function(attr, callback) {
 	if(this.events[attr]) {
 		this.events[attr].push(callback);

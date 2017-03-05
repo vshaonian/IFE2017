@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则表达式入门</title>
+</head>
+<body>
+	<h2>判断给定数字是否为手机号码</h2>
+	<input id="phone-Text" type="" name="" placeholder="请输入数字">
+	<button id="phone-Btn">验证</button>
+	<span id="phone-Inf"></span>
+	<h2>判断输入的字符串是否有相邻重复单词</h2>
+	<input id="word-Text" type="" name="" placeholder="请输入数字">
+	<button id="word-Btn">验证</button>
+	<span id="word-Inf"></span>
+	<script type="text/javascript">
+		var pBtn = document.getElementById("phone-Btn");
+		var wBtn = document.getElementById("word-Btn");
+
+		pBtn.addEventListener("click",function(){
+			var pText = document.getElementById("phone-Text").value;
+			var pInf = document.getElementById("phone-Inf");
+			var reg = /^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$/;
+			if(reg.test(pText)) {
+				pInf.innerHTML = "验证通过"
+			} else {
+				pInf.innerHTML = "验证不通过"
+			}
+		},false);
+
+		wBtn.addEventListener("click",function(){
+			var wText = document.getElementById("word-Text").value;
+			var wInf = document.getElementById("word-Inf");
+			var reg;
+			if(reg.test(wText)) {
+				wInf.innerHTML = "验证通过"
+			} else {
+				wInf.innerHTML = "验证不通过"
+			}
+		},false);
+
+
+
+
+	</script>
+</body>
+</html>

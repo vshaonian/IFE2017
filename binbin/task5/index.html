@@ -125,7 +125,7 @@
         if (arr.length === 0) {
             alert("还没有输入数字哦！")
         } else {
-            var bars = [].slice.call(document.getElementsByClassName("count"));
+            var domArr = [].slice.call(document.getElementsByClassName("count"));
             var state = [];
             var sort = function (arr) {
                 for (var k = 0; k < arr.length; k++) {
@@ -142,16 +142,14 @@
 
             sort(arr);
             var draw = function () {
-                var bar, s;
-                s = state.shift() || [];
+                var bar, numArr;
+                numArr = state.shift() || [];
                 var q = 0;
-                for (bar in bars) {
-                    if (s[bar] !== undefined) {
-                        console.log(s[bar]);
-                        console.log(bars[bar]);
-                        bars[bar].style.height = (5 * parseInt(s[bar])) + "px";
-                        bars[bar].style.left = (q * 35) + "px";
-                        bars[bar].innerHTML = s[bar];
+                for (bar in domArr) {
+                    if (numArr[bar] !== undefined) {
+                        domArr[bar].style.height = (5 * parseInt(numArr[bar])) + "px";
+                        domArr[bar].style.left = (q * 35) + "px";
+                        domArr[bar].innerHTML = numArr[bar];
                         q++;
                     }
                 }

@@ -2,7 +2,7 @@ function splitData(rawData) {
     var categoryData = [];
     var values = [];
     var volumns = [];
-    for (var i = 0; i < 240; i++) {
+    for (var i = 0; i < rawData.length; i++) {
         var dateString = rawData[i].Date;
         var pattern = /(\d{4})(\d{2})(\d{2})/;
         var dateNewType = dateString.replace(pattern, '$1-$2-$3');
@@ -21,34 +21,22 @@ function splitData(rawData) {
 
 var data0 = splitData(data);
 
-// function calculateMA(dayCount) {
-//     var result = [];
-//     for (var i = 0; i < data0.values.length; i++) {
-//         if (i < dayCount) {
-//             result.push('-');
-//             continue;
-//         }
-//         var sum = 0;
-//         for (var j = 0; j < dayCount; j++) {
-//             sum += data0.values[i - j][1];
-//         }
-//         result.push(sum / dayCount);
-//     }
-//     return result;
-// }
-
-function calculateMA(dayCount){
-	var result = [];
-	for(var i = dayCount-1;i<data0.values.length;i++){
-		result[i] = 0;
-		for(var j = 0;j<dayCount;j++){
-			result[i] += parseFloat(data[i-j][1]);
-		}
-		result[i] /= dayCount;
-		result[i] = result[i].toFixed(2);
-	};
-	return result;
+function calculateMA(dayCount) {
+    var result = [];
+    for (var i = 0; i < data0.values.length; i++) {
+        if (i < dayCount) {
+            result.push('-');
+            continue;
+        }
+        var sum = 0;
+        for (var j = 0; j < dayCount; j++) {
+            sum += parseInt(data0.values[i - j][1]);
+        }
+        result.push(sum / dayCount);
+    }
+    return result;
 }
+
 
 var myCharts = echarts.init(document.getElementById('main'));
 
@@ -62,7 +50,7 @@ var option = {
         trigger: 'axis',
         // 坐标轴直线指示器
         axisPointer: {
-            type: 'cross'
+            type: 'line'
         }
     },
     legend: {
@@ -134,10 +122,10 @@ var option = {
         },
         {
             name: '成交量',
-            type: 'bar',
+            type: 'line',
             xAxisIndex: 1,
             yAxisIndex: 1,
-            data: data0.volume
+            data: data0.volumns
         },
         {
             name: 'MA5',

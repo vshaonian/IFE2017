@@ -2,7 +2,7 @@ function splitData(rawData) {
     var categoryData = [];
     var values = [];
     var volumns = [];
-    for (var i = 0; i < rawDate.length; i++) {
+    for (var i = 0; i < rawData.length; i++) {
         var dateString = rawData[i].Date;
         var pattern = /(\d{4})(\d{2})(\d{2})/;
         var dateNewType = dateString.replace(pattern, '$1-$2-$3');

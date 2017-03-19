@@ -106,7 +106,8 @@ ajax('data.json', function (jsonData) {
             // 内置型数据区域缩放
             {
                 type: 'inside',
-                start: 50,
+                xAxisIndex: [0,1],
+                start: 60,
                 end: 100
             },
             // 滑动条型数据区域缩放
@@ -114,8 +115,9 @@ ajax('data.json', function (jsonData) {
                 show: true,
                 type: 'slider',
                 y: '90%',
+                xAxisIndex: [0,1],
                 // 数据窗口范围的起始百分比
-                start: 50,
+                start: 60,
                 end: 100
             }
         ],
@@ -127,7 +129,7 @@ ajax('data.json', function (jsonData) {
             },
             {
                 name: '成交量',
-                type: 'line',
+                type: 'bar',
                 xAxisIndex: 1,
                 yAxisIndex: 1,
                 data: data0.volumns

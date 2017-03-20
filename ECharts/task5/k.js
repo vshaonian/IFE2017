@@ -225,23 +225,9 @@ ajax('data.json', function (jsonData) {
         return nowData;
     }
 
-    function nowMa(dayCount) {
+    function nowMa(dataMa) {
 
-        var nowData = change(data0);
-
-        var result = [];
-        for (var i = 0; i < nowData.values.length; i++) {
-            if (i < dayCount) {
-                result.push('-');
-                continue;
-            }
-            var sum = 0;
-            for (var j = 0; j < dayCount; j++) {
-                sum += parseInt(nowData.values[i - j][1]);
-            }
-            result.push(sum / dayCount);
-        }
-        return result;
+        return dataMa.slice(nowDay,nowDay + 30)
     }
 
     setInterval(function () {
@@ -268,23 +254,23 @@ ajax('data.json', function (jsonData) {
                 },
                 {
                     name: 'MA5',
-                    data: nowMa(5)
+                    data: nowMa(calculateMA(5))
                 },
                 {
                     name: 'MA10',
-                    data: nowMa(10)
+                    data: nowMa(calculateMA(10))
                 },
                 {
                     name: 'MA20',
-                    data: nowMa(20)
+                    data: nowMa(calculateMA(20))
                 },
                 {
                     name: 'MA30',
-                    data: nowMa(30)
+                    data: nowMa(calculateMA(30))
                 },
             ]
         });
-    }, 200)
+    }, 1000)
 
 })
 

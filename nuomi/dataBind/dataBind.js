@@ -3,7 +3,7 @@ function Event() {
 	this.events = {};
 }
 
-//添加原型属性，监听
+// 订阅事件
 Event.prototype.on = function(attr, callback) {
 	if(this.events[attr]) {
 		this.events[attr].push(callback);
@@ -20,6 +20,7 @@ Event.prototype.off = function(attr) {
 	}
 }
 
+// 发布事件
 Event.prototype.emit = function(attr, ...arg) {
 	this.events[attr] && this.events[attr].forEach(function(item) {
 		item(...arg);
@@ -60,7 +61,7 @@ Observer.prototype.convert = function(key,val) {
 			console.log("新的" + key + "=" + newVal);
 
 			//触发$watch
-			_this.eventsBus.emit(key,val,newVal);
+			_this.eventsBus.emit(key,newVal);
 
 			if (typeof newVal === "object") {
 				new Observer(val);
@@ -87,6 +88,8 @@ var nnn = new Observer({
 	}
 })
 
-nnn.$watch("age", function(oldVal, newVal) {
-	console.log("我的年龄变了，原来是：" + oldVal + ", 现在是" + newVal);
-})
+// 测试用
+
+// nnn.$watch('age', function(val) {
+// 	console.log("我的年龄变成了：" + val + "岁");
+// })

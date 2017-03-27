@@ -216,7 +216,7 @@ ajax('data.json', function (jsonData) {
         nowData.values = data.values.slice(nowDay,nowDay + 30);
         nowData.volumns = data.volumns.slice(nowDay,nowDay + 30);
 
-        if(nowDay === data.length - 30) {
+        if(nowDay === data["categoryData"].length - 30) {
             nowDay = 0;
         } else {
             nowDay++;
@@ -270,15 +270,6 @@ ajax('data.json', function (jsonData) {
                 },
             ]
         });
-    }, 1000)
+    }, 200)
 
 })
-
-
-// var ipt = document.getElementsByClassName('input');
-
-// for(var i = 0; i < ipt.length; i++) {
-//     ipt[i].onclick = (function(i) {
-//         alert("第" + (i + 1) + "个input")
-//     })(i);
-// }
